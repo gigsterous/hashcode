@@ -29,12 +29,15 @@ public class Slice {
             mushroomCount++;
         }
     }
+    
+    public void updateIngredients(int origX, int origY, int endX, int endY, char[][] pizza) {
+        tomatoCount = 0;
+        mushroomCount = 0;
 
-    public void removeIngredient(char ingredient) {
-        if (ingredient == 'T') {
-            tomatoCount--;
-        } else {
-            mushroomCount--;
+        for (int i = origX; i < endX; i++) {
+            for (int j = origY; j < endY; j++) {
+                addIngredient(pizza[i][j]);
+            }
         }
     }
 
