@@ -30,12 +30,12 @@ public class Slice {
         }
     }
     
-    public void updateIngredients(int origX, int origY, int endX, int endY, char[][] pizza) {
+    public void updateIngredients(char[][] pizza) {
         tomatoCount = 0;
         mushroomCount = 0;
 
-        for (int i = origX; i < endX; i++) {
-            for (int j = origY; j < endY; j++) {
+        for (int i = originX; i < endX; i++) {
+            for (int j = originY; j < endY; j++) {
                 addIngredient(pizza[i][j]);
             }
         }
