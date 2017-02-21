@@ -41,6 +41,10 @@ public class Slice {
         }
     }
 
+    public boolean isComplete(int constraint) {
+        return tomatoCount >= constraint && mushroomCount >= constraint;
+    }
+
     /**
      * Getters & Setters
      */
