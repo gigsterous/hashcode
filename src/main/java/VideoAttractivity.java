@@ -16,7 +16,8 @@ public class VideoAttractivity implements Comparable<VideoAttractivity> {
     }
 
     public int getAttractivity() {
-        return attractivity / video.getSize();
+        int divisor = endpoints.size() > 0 ? endpoints.size() : 1;
+        return (attractivity / video.getSize()) / divisor;
     }
 
     public void addRequest(RequestDescription request) {
