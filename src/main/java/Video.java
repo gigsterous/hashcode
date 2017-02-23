@@ -1,8 +1,10 @@
+import java.util.Comparator;
+
 /**
  * Created by michalsvacha on 23.02.17.
  */
 
-public class Video {
+public class Video implements Comparator<Video> {
 
     private int id;
     private int size;
@@ -37,5 +39,9 @@ public class Video {
                 "id = " + id +
                 ", size = " + size +
                 '}';
+    }
+
+    public int compare(Video o1, Video o2) {
+        return o2.getAttractivity() - o1.getAttractivity();
     }
 }
