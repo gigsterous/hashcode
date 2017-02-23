@@ -11,6 +11,8 @@ public class Video {
     public Video(int id, int size) {
         this.id = id;
         this.size = size;
+
+        attractivity = 0;
     }
 
     public int getId() {
@@ -25,8 +27,8 @@ public class Video {
         return attractivity;
     }
 
-    public void setAttractivity(int attractivity) {
-        this.attractivity = attractivity;
+    public void addAttractivity(int attractivity) {
+        this.attractivity += attractivity;
     }
 
     @Override
