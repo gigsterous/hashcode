@@ -16,7 +16,7 @@ public class VideoAttractivity implements Comparable<VideoAttractivity> {
     }
 
     public int getAttractivity() {
-        return attractivity;
+        return attractivity / video.getSize();
     }
 
     public void addRequest(RequestDescription request) {
