@@ -24,4 +24,13 @@ public class RequestDescription {
     public int getRequestsCount() {
         return requestsCount;
     }
+
+    @Override
+    public String toString() {
+        return "Request {" +
+                "videoID = " + videoID +
+                ", endpointID=" + endpointID +
+                ", requestsCount=" + requestsCount +
+                '}';
+    }
 }
