@@ -52,7 +52,6 @@ public class Main {
             videos = new Video[videosCount];
             for (int i = 0; i < videosCount; i++) {
                 videos[i] = new Video(i, Integer.parseInt(videosInput[i]));
-
             }
 
             // ENDPOINTS
@@ -77,7 +76,6 @@ public class Main {
                     Latency latency = new Latency(cacheLatency, caches[cacheId]);
                     endpoints[i].addLatency(latency);
                 }
-
             }
 
             // REQUESTS
@@ -93,11 +91,26 @@ public class Main {
                 requests[j] = new RequestDescription(videos[videoId], endpoints[endpointId], count);
             }
 
-
-
         } catch (Exception e) {
             System.out.println("Cannot read file");
             e.printStackTrace();
+        }
+    }
+
+    public void printInput() {
+        System.out.println("Videos: ");
+        for (Video v: videos) {
+            System.out.println(v);
+        }
+
+        System.out.println("Endpoints: ");
+        for (Endpoint e: endpoints) {
+            System.out.println(e);
+        }
+
+        System.out.println("Requests: ");
+        for (RequestDescription r: requests) {
+            System.out.println(r);
         }
     }
 
