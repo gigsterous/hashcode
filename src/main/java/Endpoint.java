@@ -6,20 +6,22 @@ import java.util.List;
  */
 public class Endpoint {
 
+    private int id;
     private int latencyCenter;
     private List<Latency> latencies;
 
-    public Endpoint(int latencyCenter) {
+    public Endpoint(int id, int latencyCenter) {
+        this.id = id;
         this.latencyCenter = latencyCenter;
         latencies = new ArrayList<Latency>();
     }
 
-    public int getLatencyCenter() {
-        return latencyCenter;
+    public int getId() {
+        return id;
     }
 
-    public void setLatencyCenter(int latencyCenter) {
-        this.latencyCenter = latencyCenter;
+    public int getLatencyCenter() {
+        return latencyCenter;
     }
 
     public List<Latency> getLatencies() {
@@ -30,4 +32,12 @@ public class Endpoint {
         latencies.add(latency);
     }
 
+    @Override
+    public String toString() {
+        return "Endpoint{" +
+                "id=" + id +
+                ", latencyCenter=" + latencyCenter +
+                ", latencies=" + latencies +
+                '}';
+    }
 }

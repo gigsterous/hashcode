@@ -3,6 +3,7 @@
  */
 
 public class Video {
+
     private int id;
     private int size;
 

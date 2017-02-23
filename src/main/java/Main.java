@@ -9,8 +9,6 @@ public class Main {
     private static int cacheCount;
     private static int cacheCapacity;
 
-    private static int cacheServersNum;
-
     private static Video[] videos;
 
     private static Cache[] caches;
@@ -51,8 +49,8 @@ public class Main {
             line = bf.readLine();
             String[] videosInput = line.split(" ");
 
-            videos = new Video[videosInput.length];
-            for (int i = 0; i < videosInput.length; i++) {
+            videos = new Video[videosCount];
+            for (int i = 0; i < videosCount; i++) {
                 videos[i] = new Video(i, Integer.parseInt(videosInput[i]));
 
             }
@@ -67,7 +65,7 @@ public class Main {
                 int latencyCenter = Integer.parseInt(endpointInput[0]);
                 int cacheServersNum = Integer.parseInt(endpointInput[1]);
 
-                endpoints[i] = new Endpoint(latencyCenter);
+                endpoints[i] = new Endpoint(i, latencyCenter);
 
                 for (int j = 0; j < cacheServersNum; j++) {
                     line = bf.readLine();

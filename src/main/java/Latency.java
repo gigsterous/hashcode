@@ -15,15 +15,15 @@ public class Latency {
         return latency;
     }
 
-    public void setLatency(int latency) {
-        this.latency = latency;
-    }
-
     public Cache getCache() {
         return cache;
     }
 
-    public void setCache(Cache cache) {
-        this.cache = cache;
+    @Override
+    public String toString() {
+        return "Latency{" +
+                ", latency=" + latency +
+                ", cache=" + cache +
+                '}';
     }
 }
