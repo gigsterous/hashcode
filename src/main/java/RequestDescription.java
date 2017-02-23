@@ -3,22 +3,22 @@
  */
 public class RequestDescription {
 
-    private int videoID;
-    private int endpointID;
+    private Video video;
+    private Endpoint endpoint;
     private int requestsCount;
 
-    public RequestDescription(int videoID, int endpointID, int requestsCount) {
-        this.videoID = videoID;
-        this.endpointID = endpointID;
+    public RequestDescription(Video video, Endpoint endpoint, int requestsCount) {
+        this.video = video;
+        this.endpoint = endpoint;
         this.requestsCount = requestsCount;
     }
 
-    public int getVideoID() {
-        return videoID;
+    public Video getVideo() {
+        return video;
     }
 
-    public int getEndpointID() {
-        return endpointID;
+    public Endpoint getEndpoint() {
+        return endpoint;
     }
 
     public int getRequestsCount() {
@@ -28,9 +28,9 @@ public class RequestDescription {
     @Override
     public String toString() {
         return "Request {" +
-                "videoID = " + videoID +
-                ", endpointID=" + endpointID +
-                ", requestsCount=" + requestsCount +
+                "VID = " + video.getId() +
+                ", EID = " + endpoint.getId() +
+                ", REQ = " + requestsCount +
                 '}';
     }
 }
