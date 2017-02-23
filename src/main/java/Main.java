@@ -80,13 +80,10 @@ public class Main {
                     endpoints[i].addLatency(latency);
                 }
 
-
-
-
-                System.out.println("Endpoint info: " + line);
             }
 
             // REQUESTS
+            requests = new RequestDescription[requestCount];
             for (int j = 0; j < requestCount; j++) {
                 line = bf.readLine();
                 String[] requestInput = line.split(" ");
