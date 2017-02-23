@@ -6,6 +6,15 @@ We took the opportunity to do a little bit of pair programming and trying the bu
 
 All of the code is here for educational purposes. Quite frankly, we're not even sure if it's totally correct. But we are absolutely sure we had fun writing it.
 
+## Final Scores
+
+1. Kittens: 587472 points
+2. Me at the zoo: 433526 points
+3. Trending today: 499970 points
+4. Videos worth spreading: 538604 points
+
+> Total score: **2.059.572 points**
+
 ## License
 
 The code is licensed under MIT license.
