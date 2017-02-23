@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -17,7 +18,8 @@ public class Main {
 
     public static void main(String[] args) {
         readInput("kittens.in");
-
+        optimize();
+        timeSaved();
     }
 
     /**
@@ -112,6 +114,37 @@ public class Main {
         for (RequestDescription r: requests) {
             System.out.println(r);
         }
+    }
+
+    public static void optimize() {
+        caches[0].addVideo(videos[0]);
+    }
+
+    public static void timeSaved() {
+        double requestCount = 0.0;
+        ArrayList<Integer> latencyReq = new ArrayList<Integer>();
+
+        for (RequestDescription r : requests) {
+            requestCount += r.getRequestsCount();
+
+            int latency = 0;
+            for (Latency l : r.getEndpoint().getLatencies()) {
+                if (l.getCache().containsVideo(r.getVideo().getId())) {
+                    latency = (r.getRequestsCount()) * (r.getEndpoint().getLatencyCenter() - l.getLatency());
+                    break;
+                }
+            }
+
+            latencyReq.add(latency);
+        }
+
+        double latencySavings = 0.0;
+        for (int lat : latencyReq) {
+            latencySavings += lat;
+        }
+
+        double savingsPerRequest = latencySavings/requestCount;
+        System.out.println("Time saved is " + savingsPerRequest + "ms");
     }
 
 }
