@@ -16,4 +16,16 @@ public class Cache {
 
         videos = new ArrayList<Video>();
     }
+
+    public int remainingCapacity() {
+        int usage = 0;
+        for (Video v: videos) {
+            usage += v.getSize();
+        }
+        return capacity - usage;
+    }
+
+    public boolean willFit(Video video) {
+        return remainingCapacity() - video.getSize() > 0;
+    }
 }
