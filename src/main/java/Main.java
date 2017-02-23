@@ -11,7 +11,7 @@ public class Main {
 
     private static int cacheServersNum;
 
-    private static int[] videos;
+    private static Video[] videos;
 
     private static char[][] latencies;
 
@@ -43,9 +43,10 @@ public class Main {
             line = bf.readLine();
             String[] videosInput = line.split(" ");
 
-            videos = new int[videosInput.length];
+            videos = new Video[videosInput.length];
             for (int i = 0; i < videosInput.length; i++) {
-                videos[i] = Integer.parseInt(videosInput[i]);
+                videos[i] = new Video(i, Integer.parseInt(videosInput[i]));
+
             }
 
             for (int i = 0; i < endpointsCount; i++) {
