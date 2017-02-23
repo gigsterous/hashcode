@@ -1,24 +1,23 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
-    private static final char TOMATO = 'T';
-    private static final char MUSHROOM = 'M';
+    private static int V;
+    private static int endpointsCount;
+    private static int R;
+    private static int C;
+    private static int X;
 
-    private static int rows;
-    private static int cols;
-    private static int minIngredients;
-    private static int maxSize;
+    private static int cacheServersNum;
 
-    private static char[][] pizza;
+    private static int[] videos;
+
+    private static char[][] latencies;
 
     public static void main(String[] args) {
-        readInput("example.in");
+        readInput("kittens.in");
 
-        printPizza();
     }
 
     /**
@@ -32,35 +31,39 @@ public class Main {
 
             // first line contains configuration
             String line = bf.readLine();
-            String[] tmp = line.split(" ");
+            String[] constants = line.split(" ");
 
-            rows = Integer.parseInt(tmp[0]);
-            cols = Integer.parseInt(tmp[1]);
-            minIngredients = Integer.parseInt(tmp[2]);
-            maxSize = Integer.parseInt(tmp[3]);
+            V = Integer.parseInt(constants[0]);
+            endpointsCount = Integer.parseInt(constants[1]);
+            R = Integer.parseInt(constants[2]);
+            C = Integer.parseInt(constants[3]);
+            X = Integer.parseInt(constants[3]);
 
-            pizza = new char[rows][cols];
+            // videos
+            line = bf.readLine();
+            String[] videosInput = line.split(" ");
 
-            // populate pizza
-            for (int i = 0; i < rows; i++) {
-                line = bf.readLine();
-
-                for (int j = 0; j < cols; j++) {
-                    pizza[i][j] = line.charAt(j);
-                }
+            videos = new int[videosInput.length];
+            for (int i = 0; i < videosInput.length; i++) {
+                videos[i] = Integer.parseInt(videosInput[i]);
             }
+
+            for (int i = 0; i < endpointsCount; i++) {
+                // server input
+                line = bf.readLine();
+                String[] endpointInput = line.split(" ");
+
+                int latencyCenter = Integer.parseInt(endpointInput[0]);
+                int cacheServersNum = Integer.parseInt(endpointInput[1]);
+
+
+            }
+
+
+
         } catch (Exception e) {
             System.out.println("Cannot read file");
             e.printStackTrace();
-        }
-    }
-
-    /**
-     * Prints the original pizza for debugging purposes.
-     */
-    private static void printPizza() {
-        for (int i = 0; i < rows; i++) {
-            System.out.println(pizza[i]);
         }
     }
 
