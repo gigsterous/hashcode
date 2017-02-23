@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
@@ -117,7 +120,19 @@ public class Main {
     }
 
     public static void optimize() {
-        caches[0].addVideo(videos[0]);
+        List<VideoAttractivity> atts = new ArrayList<VideoAttractivity>();
+        for (int i = 0; i < videosCount; i++) {
+            atts.add(new VideoAttractivity(videos[i]));
+        }
+
+        for (RequestDescription r : requests) {
+            VideoAttractivity atr = atts.get(r.getVideo().getId());
+            atr.addRequest(r);
+        }
+
+        Collections.sort(atts);
+        System.out.println(atts);
+
     }
 
     public static void timeSaved() {
