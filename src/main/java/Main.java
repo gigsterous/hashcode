@@ -56,7 +56,7 @@ public class Main {
                 int latencyCenter = Integer.parseInt(endpointInput[0]);
                 int cacheServersNum = Integer.parseInt(endpointInput[1]);
 
-
+                System.out.println("Endpoint info: " + line);
             }
 
 
