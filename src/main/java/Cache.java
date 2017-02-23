@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +18,10 @@ public class Cache {
         videos = new HashMap<Integer, Video>();
     }
 
+    public int getId() {
+        return id;
+    }
+
     public boolean containsVideo(int videoId) {
         return videos.containsKey(videoId);
     }
@@ -27,6 +32,14 @@ public class Cache {
 
     public void removeVideo(Video video) {
         videos.remove(video.getId());
+    }
+
+    public boolean isEmpty() {
+        return videos.isEmpty();
+    }
+
+    public Collection<Video> getVideos() {
+        return videos.values();
     }
 
     public int remainingCapacity() {

@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,9 +22,12 @@ public class Main {
     private static RequestDescription[] requests;
 
     public static void main(String[] args) {
-        readInput("kittens.in");
+        String name = "kittens";
+
+        readInput(name + ".in");
         optimize();
         timeSaved();
+        saveOutput(name);
     }
 
     /**
@@ -131,11 +136,61 @@ public class Main {
         }
 
         Collections.sort(atts);
-        System.out.println(atts);
+        // System.out.println(atts);
 
+        for (VideoAttractivity atr: atts) {
+            for (Endpoint e : atr.getEndpoints()) {
+                if (!e.hasVideoAccess(atr.getVideo())) {
+                    for (Latency l : e.getLatencies()) {
+                        if (l.getCache().willFit(atr.getVideo())) {
+                            l.getCache().addVideo(atr.getVideo());
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    public static void timeSaved() {
+    private static void saveOutput(String name) {
+        StringBuilder sb = new StringBuilder("");
+
+        List<Cache> usedCaches = new ArrayList<Cache>();
+
+        for (int i = 0; i < cacheCount; i++) {
+            if (!caches[i].isEmpty()) {
+                usedCaches.add(caches[i]);
+            }
+        }
+
+        sb.append(usedCaches.size());
+
+        for (Cache c : usedCaches) {
+            sb.append("\n");
+
+            sb.append(c.getId());
+
+            for (Video v : c.getVideos()) {
+                sb.append(" ");
+                sb.append(v.getId());
+            }
+
+        }
+
+        System.out.println(sb.toString());
+
+        try {
+            PrintWriter out = new PrintWriter("src/main/resources/" + name + ".out");
+
+            out.write(sb.toString());
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void timeSaved() {
         double requestCount = 0.0;
         ArrayList<Integer> latencyReq = new ArrayList<Integer>();
 

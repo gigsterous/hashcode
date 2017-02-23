@@ -32,6 +32,17 @@ public class Endpoint {
         latencies.add(latency);
     }
 
+    public boolean hasVideoAccess(Video v) {
+        boolean flag = false;
+        for (Latency l : getLatencies()) {
+            if (l.getCache().containsVideo(v.getId())) {
+                flag = true;
+            }
+        }
+
+        return flag;
+    }
+
     @Override
     public String toString() {
         return "Endpoint{" +
