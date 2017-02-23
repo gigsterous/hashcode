@@ -3,11 +3,11 @@ import java.io.FileReader;
 
 public class Main {
 
-    private static int V;
+    private static int videosCount;
     private static int endpointsCount;
-    private static int R;
+    private static int requestCount;
     private static int cacheCount;
-    private static int X;
+    private static int cacheCapacity;
 
     private static int cacheServersNum;
 
@@ -15,6 +15,7 @@ public class Main {
 
     private static Cache[] caches;
     private static Endpoint[] endpoints;
+    private static RequestDescription[] requests;
 
     public static void main(String[] args) {
         readInput("kittens.in");
@@ -34,19 +35,19 @@ public class Main {
             String line = bf.readLine();
             String[] constants = line.split(" ");
 
-            V = Integer.parseInt(constants[0]);
+            videosCount = Integer.parseInt(constants[0]);
             endpointsCount = Integer.parseInt(constants[1]);
-            R = Integer.parseInt(constants[2]);
+            requestCount = Integer.parseInt(constants[2]);
             cacheCount = Integer.parseInt(constants[3]);
-            X = Integer.parseInt(constants[3]);
+            cacheCapacity = Integer.parseInt(constants[3]);
 
             caches = new Cache[cacheCount];
 
             for (int i = 0; i < cacheCount; i++) {
-                caches[i] = new Cache(i, X);
+                caches[i] = new Cache(i, cacheCapacity);
             }
 
-            // videos
+            // VIDEOS
             line = bf.readLine();
             String[] videosInput = line.split(" ");
 
@@ -56,7 +57,7 @@ public class Main {
 
             }
 
-            // endpoints
+            // ENDPOINTS
             endpoints = new Endpoint[endpointsCount];
             for (int i = 0; i < endpointsCount; i++) {
                 // server input
@@ -81,7 +82,20 @@ public class Main {
 
 
 
+
                 System.out.println("Endpoint info: " + line);
+            }
+
+            // REQUESTS
+            for (int j = 0; j < requestCount; j++) {
+                line = bf.readLine();
+                String[] requestInput = line.split(" ");
+
+                int videoId = Integer.parseInt(requestInput[0]);
+                int endpointId = Integer.parseInt(requestInput[1]);
+                int count = Integer.parseInt(requestInput[2]);
+
+                requests[j] = new RequestDescription(videoId, endpointId, count);
             }
 
 
