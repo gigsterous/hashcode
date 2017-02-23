@@ -26,4 +26,8 @@ public class Endpoint {
         return latencies;
     }
 
+    public void addLatency(Latency latency) {
+        latencies.add(latency);
+    }
+
 }
