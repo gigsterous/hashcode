@@ -92,7 +92,7 @@ public class Main {
                 int endpointId = Integer.parseInt(requestInput[1]);
                 int count = Integer.parseInt(requestInput[2]);
 
-                requests[j] = new RequestDescription(videoId, endpointId, count);
+                requests[j] = new RequestDescription(videos[videoId], endpoints[endpointId], count);
             }
 
 
