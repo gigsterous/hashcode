@@ -22,7 +22,7 @@ public class Main {
     private static RequestDescription[] requests;
 
     public static void main(String[] args) {
-        String name = "kittens";
+        String name = "videos_worth_spreading";
 
         readInput(name + ".in");
         optimize();
@@ -47,7 +47,7 @@ public class Main {
             endpointsCount = Integer.parseInt(constants[1]);
             requestCount = Integer.parseInt(constants[2]);
             cacheCount = Integer.parseInt(constants[3]);
-            cacheCapacity = Integer.parseInt(constants[3]);
+            cacheCapacity = Integer.parseInt(constants[4]);
 
             caches = new Cache[cacheCount];
 
@@ -136,7 +136,6 @@ public class Main {
         }
 
         Collections.sort(atts);
-        // System.out.println(atts);
 
         for (VideoAttractivity atr: atts) {
             for (Endpoint e : atr.getEndpoints()) {
@@ -144,10 +143,18 @@ public class Main {
                     for (Latency l : e.getLatencies()) {
                         if (l.getCache().willFit(atr.getVideo())) {
                             l.getCache().addVideo(atr.getVideo());
-
                             break;
                         }
                     }
+                }
+            }
+        }
+
+        for (Cache c : caches) {
+            for (VideoAttractivity va : atts) {
+                Video v = va.getVideo();
+                if (!c.containsVideo(v.getId()) && c.willFit(v)) {
+                    c.addVideo(v);
                 }
             }
         }
@@ -177,8 +184,6 @@ public class Main {
             }
 
         }
-
-        System.out.println(sb.toString());
 
         try {
             PrintWriter out = new PrintWriter("src/main/resources/" + name + ".out");
@@ -216,5 +221,4 @@ public class Main {
         double savingsPerRequest = latencySavings/requestCount;
         System.out.println("Time saved is " + savingsPerRequest + "ms");
     }
-
 }
