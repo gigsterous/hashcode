@@ -67,7 +67,6 @@ public class Main {
             // ENDPOINTS
             endpoints = new Endpoint[endpointsCount];
             for (int i = 0; i < endpointsCount; i++) {
-                // server input
                 line = bf.readLine();
                 String[] endpointInput = line.split(" ");
 
@@ -107,6 +106,7 @@ public class Main {
         }
     }
 
+    // print input for debugging purposes
     public void printInput() {
         System.out.println("Videos: ");
         for (Video v: videos) {
@@ -124,24 +124,33 @@ public class Main {
         }
     }
 
+    // perform optimisation
     public static void optimize() {
         List<VideoAttractivity> atts = new ArrayList<VideoAttractivity>();
         for (int i = 0; i < videosCount; i++) {
             atts.add(new VideoAttractivity(videos[i]));
         }
 
+        // compute attractivity for each video
         for (RequestDescription r : requests) {
             VideoAttractivity atr = atts.get(r.getVideo().getId());
             atr.addRequest(r);
         }
 
+        // sort attractivity mappings by their attractivity
         Collections.sort(atts);
 
+        // iterate over attractive videos starting with most attractive
         for (VideoAttractivity atr: atts) {
+            // get all endpoints requesting this video
             for (Endpoint e : atr.getEndpoints()) {
+                // check whether endpoint has access to some cache with this video
                 if (!e.hasVideoAccess(atr.getVideo())) {
+                    // no access - find available cache with latest latency
                     for (Latency l : e.getLatencies()) {
+                        // check if video fill fit into the cache
                         if (l.getCache().willFit(atr.getVideo())) {
+                            // add the video to cache and break the search
                             l.getCache().addVideo(atr.getVideo());
                             break;
                         }
@@ -150,6 +159,7 @@ public class Main {
             }
         }
 
+        // fill in the remaining space (if any) in the available caches
         for (Cache c : caches) {
             for (VideoAttractivity va : atts) {
                 Video v = va.getVideo();
@@ -160,6 +170,7 @@ public class Main {
         }
     }
 
+    // save output to file
     private static void saveOutput(String name) {
         StringBuilder sb = new StringBuilder("");
 
@@ -195,6 +206,7 @@ public class Main {
         }
     }
 
+    // print criterial function (average time saved by optimisation)
     private static void timeSaved() {
         double requestCount = 0.0;
         ArrayList<Integer> latencyReq = new ArrayList<Integer>();

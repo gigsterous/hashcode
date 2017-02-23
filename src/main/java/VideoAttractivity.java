@@ -15,6 +15,11 @@ public class VideoAttractivity implements Comparable<VideoAttractivity> {
         this.video = video;
     }
 
+    /**
+     * Attractivity is computed as number of hits weighted by video size and number on demanding endpoints.
+     *
+     * @return attractivity
+     */
     public int getAttractivity() {
         int divisor = endpoints.size() > 0 ? endpoints.size() : 1;
         return (attractivity / video.getSize()) / divisor;
