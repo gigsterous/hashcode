@@ -1,9 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
+package com.gigsterous.hashcode;
+
+import com.gigsterous.hashcode.model.*;
+
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,18 +16,20 @@ public class Main {
     private static int cacheCapacity;
 
     private static Video[] videos;
-
     private static Cache[] caches;
     private static Endpoint[] endpoints;
     private static RequestDescription[] requests;
 
-    public static void main(String[] args) {
-        String name = "videos_worth_spreading";
-
-        readInput(name + ".in");
-        optimize();
-        timeSaved();
-        saveOutput(name);
+    public static void main(String[] args) throws Exception {
+        if (args.length > 0) {
+            String name = args[0];
+            readInput(name);
+            optimize();
+            timeSaved();
+            saveOutput(name);
+        } else {
+            throw new Exception("No input file given.");
+        }
     }
 
     /**
@@ -37,7 +39,7 @@ public class Main {
      */
     private static void readInput(String file) {
         try {
-            BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/" + file));
+            BufferedReader bf = new BufferedReader(new FileReader(file));
 
             // first line contains configuration
             String line = bf.readLine();
@@ -173,7 +175,6 @@ public class Main {
     // save output to file
     private static void saveOutput(String name) {
         StringBuilder sb = new StringBuilder("");
-
         List<Cache> usedCaches = new ArrayList<Cache>();
 
         for (int i = 0; i < cacheCount; i++) {
@@ -186,18 +187,16 @@ public class Main {
 
         for (Cache c : usedCaches) {
             sb.append("\n");
-
             sb.append(c.getId());
 
             for (Video v : c.getVideos()) {
                 sb.append(" ");
                 sb.append(v.getId());
             }
-
         }
 
         try {
-            PrintWriter out = new PrintWriter("src/main/resources/" + name + ".out");
+            PrintWriter out = new PrintWriter(name + ".out");
 
             out.write(sb.toString());
             out.close();
@@ -233,4 +232,5 @@ public class Main {
         double savingsPerRequest = latencySavings/requestCount;
         System.out.println("Time saved is " + savingsPerRequest + "ms");
     }
+
 }
