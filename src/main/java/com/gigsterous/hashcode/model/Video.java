@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package com.gigsterous.hashcode.model;
 
 /**
  * Created by michalsvacha on 23.02.17.
@@ -25,7 +25,7 @@ public class Video {
 
     @Override
     public String toString() {
-        return "Video {" +
+        return "com.gigsterous.hashcode.model.Video {" +
                 "id = " + id +
                 ", size = " + size +
                 '}';

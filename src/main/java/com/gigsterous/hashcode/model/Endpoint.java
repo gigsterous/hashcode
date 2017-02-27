@@ -1,3 +1,5 @@
+package com.gigsterous.hashcode.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class Endpoint {
 
     @Override
     public String toString() {
-        return "Endpoint{" +
+        return "com.gigsterous.hashcode.model.Endpoint{" +
                 "id=" + id +
                 ", latencyCenter=" + latencyCenter +
                 ", latencies=" + latencies +

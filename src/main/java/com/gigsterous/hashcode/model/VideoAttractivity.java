@@ -1,3 +1,4 @@
+package com.gigsterous.hashcode.model;
 
 import java.util.*;
 
@@ -41,7 +42,7 @@ public class VideoAttractivity implements Comparable<VideoAttractivity> {
 
     @Override
     public String toString() {
-        return "VideoAttractivity {" +
+        return "com.gigsterous.hashcode.model.VideoAttractivity {" +
                 "video=" + video.getId() +
                 ", attractivity=" + attractivity +
                 '}';

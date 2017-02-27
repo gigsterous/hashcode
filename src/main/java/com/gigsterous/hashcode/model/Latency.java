@@ -1,3 +1,5 @@
+package com.gigsterous.hashcode.model;
+
 /**
  * Created by smajl on 23.2.17.
  */
@@ -21,7 +23,7 @@ public class Latency {
 
     @Override
     public String toString() {
-        return "Latency{" +
+        return "com.gigsterous.hashcode.model.Latency{" +
                 ", latency=" + latency +
                 ", cache=" + cache +
                 '}';
