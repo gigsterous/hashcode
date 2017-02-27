@@ -4,9 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>hashcode</groupId>
-    <artifactId>sample</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.gigsterous.hashcode</groupId>
+    <artifactId>hashcode</artifactId>
+    <version>1.0.0</version>
 
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.gigsterous.hashcode.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
